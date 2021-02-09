@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
@@ -8,7 +9,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent],
-  imports: [CommonModule, AuthRoutingModule],
+  imports: [CommonModule, AuthRoutingModule, FormsModule],
   exports: [LoginComponent, RegisterComponent, ResetPasswordComponent],
 })
 export class AuthModule {}
