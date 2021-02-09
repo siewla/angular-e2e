@@ -23,6 +23,16 @@
         <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
           Login
         </button>
+        <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
+          Please fill all fields.
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="areCredentialsInvalid"
+        >
+          Invalid email or password.
+        </div>
       </form>
     </div>
   </div>

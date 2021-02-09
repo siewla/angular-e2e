@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  NgForm,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,6 +17,8 @@ import { SignInData } from '../../../models/signInData';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isFormInvalid = false;
+  areCredentialsInvalid = false;
 
   constructor(private fb: FormBuilder, private AuthService: AuthService) {
     this.loginForm = this.fb.group({
@@ -27,8 +30,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    if (!this.loginForm.valid) {
+      this.isFormInvalid = true;
+      this.areCredentialsInvalid = false;
+      return;
+    }
+    this.checkCredentials(this.loginForm);
+  }
+
+  private checkCredentials(loginForm: any) {
     let credentials = this.loginForm.value;
     const signInData = new SignInData(credentials.email, credentials.password);
-    this.AuthService.authenticate(signInData);
+    if (!this.AuthService.authenticate(signInData)) {
+      this.isFormInvalid = false;
+      this.areCredentialsInvalid = true;
+    }
   }
 }
