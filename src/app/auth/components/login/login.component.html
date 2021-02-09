@@ -1,1 +1,29 @@
-<h2>login</h2>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <fieldset class="form-group">
+          <input
+            formControlName="email"
+            placeholder="Email"
+            class="form-control form-control-lg"
+            type="email"
+            required
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <input
+            formControlName="password"
+            placeholder="Password"
+            class="form-control form-control-lg"
+            type="password"
+            required
+          />
+        </fieldset>
+        <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

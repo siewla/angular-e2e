@@ -1,15 +1,1 @@
-<nav>
-  <ul>
-    <li>
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-    </li>
-    <li>
-      <a routerLink="/register" routerLinkActive="active">Register</a>
-    </li>
-    <li>
-      <a routerLink="/reset-password" routerLinkActive="active"
-        >Reset Password</a
-      >
-    </li>
-  </ul>
-</nav>
+<h1 *ngIf="authService.isAuthenticated">You are authenticated</h1>
