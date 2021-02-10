@@ -1,7 +1,7 @@
 import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { SignInData } from '../models/signInData';
+import { SignInData } from '../../models/signInData';
 
 @Injectable({
   providedIn: 'root',

@@ -6,7 +6,7 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { SignInData } from '../../../models/signInData';
 
