@@ -3,12 +3,12 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!authService.isAuthenticated">
       <a class="nav-link" routerLink="/login" routerLinkActive="active"
         >Login</a
       >
     </li>
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="!authService.isAuthenticated">
       <a class="nav-link" routerLink="/register" routerLinkActive="active"
         >Register</a
       >
@@ -17,6 +17,11 @@
       <a class="nav-link" routerLink="/reset-password" routerLinkActive="active"
         >Reset Password</a
       >
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto" *ngIf="authService.isAuthenticated">
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">Logout</a>
     </li>
   </ul>
 </nav>

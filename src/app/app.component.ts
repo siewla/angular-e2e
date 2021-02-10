@@ -10,4 +10,8 @@ export class AppComponent {
   title = 'angular-e2e';
 
   constructor(public authService: AuthService) {}
+
+  logout() {
+    this.authService.logout();
+  }
 }
