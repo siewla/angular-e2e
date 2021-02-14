@@ -7,6 +7,7 @@
             formControlName="email"
             placeholder="Email"
             class="form-control form-control-lg"
+            id="email"
             type="email"
             required
           />
@@ -15,12 +16,17 @@
           <input
             formControlName="password"
             placeholder="Password"
+            id="password"
             class="form-control form-control-lg"
             type="password"
             required
           />
         </fieldset>
-        <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+        <button
+          class="btn btn-lg btn-primary pull-xs-right"
+          type="submit"
+          id="login"
+        >
           Login
         </button>
         <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
