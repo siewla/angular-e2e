@@ -1,5 +1,23 @@
 <h1>Customers</h1>
-<app-customer
-  *ngFor="let customer of customers"
-  [customer]="customer"
-></app-customer>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>Number of Insurances</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>
+        <a routerLink="/customer/{{ customer._id }}">{{ customer.name }}</a>
+      </td>
+      <td>{{ customer.insurances.length }}</td>
+      <td>
+        <div *ngIf="customer.insurances.length > 0; else inactive">Active</div>
+        <ng-template #inactive> Inactive </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>

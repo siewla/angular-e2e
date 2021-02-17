@@ -1,1 +1,17 @@
-<li>{{ customer.name }}</li>
+<h1>{{ customer.name }}</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Insurance Name</th>
+      <th>Agent Name</th>
+      <th>Date Activated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let insurance of customer.insurances">
+      <td>{{ insurance.name }}</td>
+      <td>{{ insurance.agent }}</td>
+      <td>{{ insurance.dateActivated | date: "shortDate" }}</td>
+    </tr>
+  </tbody>
+</table>

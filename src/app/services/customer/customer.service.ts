@@ -18,4 +18,8 @@ export class CustomerService {
   getCustomers(): Observable<any> {
     return this.http.get<any>(`${this.backEndUrL}/customers/all`);
   }
+
+  getCustomerByID(customerID: any): Observable<any> {
+    return this.http.get<any>(`${this.backEndUrL}/customer/${customerID}`);
+  }
 }
