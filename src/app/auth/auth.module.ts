@@ -4,12 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, ResetPasswordComponent],
   imports: [CommonModule, AuthRoutingModule, FormsModule, ReactiveFormsModule],
-  exports: [LoginComponent, RegisterComponent, ResetPasswordComponent],
+  exports: [LoginComponent, ResetPasswordComponent],
 })
 export class AuthModule {}

@@ -4,7 +4,9 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  NgForm,
 } from '@angular/forms';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,6 +14,7 @@ import {
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  isFormInvalid = false;
 
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
@@ -22,8 +25,5 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    let credentials = this.registerForm.value;
-    console.log(credentials);
-  }
+  onSubmit() {}
 }
