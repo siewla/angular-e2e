@@ -12,8 +12,8 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CustomerService {
-  // backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
-  backEndUrL: string = 'http://localhost:3000';
+  backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
+  // backEndUrL: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
