@@ -6,6 +6,7 @@
       <th>Customer Name</th>
       <th>Number of Insurances</th>
       <th>Status</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,9 @@
       <td>
         <div *ngIf="customer.insurances.length > 0; else inactive">Active</div>
         <ng-template #inactive> Inactive </ng-template>
+      </td>
+      <td>
+        <button (click)="onDelete(customer._id)" class="del">x</button>
       </td>
     </tr>
   </tbody>

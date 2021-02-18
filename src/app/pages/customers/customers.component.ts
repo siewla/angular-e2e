@@ -15,4 +15,13 @@ export class CustomersComponent implements OnInit {
       this.customers = customers;
     });
   }
+
+  onDelete(customerID: any) {
+    // console.log(customerID, insuranceID);
+    this.customerService.deleteCustomer(customerID).subscribe(() =>
+      this.customerService.getCustomers().subscribe((customers) => {
+        this.customers = customers;
+      })
+    );
+  }
 }

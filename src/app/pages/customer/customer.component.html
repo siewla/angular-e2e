@@ -1,10 +1,12 @@
-<h1>{{ customer.name }}</h1>
+<h1>Customer Name: {{ customer.name }}</h1>
+<app-addnewinsurance [customerID]="customer._id"></app-addnewinsurance>
 <table class="table">
   <thead>
     <tr>
       <th>Insurance Name</th>
       <th>Agent Name</th>
       <th>Date Activated</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +14,11 @@
       <td>{{ insurance.name }}</td>
       <td>{{ insurance.agent }}</td>
       <td>{{ insurance.dateActivated | date: "shortDate" }}</td>
+      <td>
+        <button (click)="onDelete(customer._id, insurance._id)" class="del">
+          x
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

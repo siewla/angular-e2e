@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  customer: any;
+  customer: any = {};
   constructor(
     private customerService: CustomerService,
     private activatedRoute: ActivatedRoute
@@ -16,10 +16,22 @@ export class CustomerComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       let customerID = params.get('customerID');
-      console.log(customerID);
       this.customerService.getCustomerByID(customerID).subscribe((customer) => {
         this.customer = customer;
       });
     });
+  }
+
+  onDelete(customerID: any, insuranceID: any) {
+    // console.log(customerID, insuranceID);
+    this.customerService
+      .deleteInsurance(customerID, insuranceID)
+      .subscribe(() =>
+        this.customerService
+          .getCustomerByID(customerID)
+          .subscribe((customer) => {
+            this.customer = customer;
+          })
+      );
   }
 }

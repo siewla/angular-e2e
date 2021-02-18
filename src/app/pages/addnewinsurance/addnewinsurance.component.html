@@ -1,17 +1,7 @@
 <div class="container mt-5">
   <div class="card">
     <div class="card-body">
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <fieldset class="form-group">
-          <input
-            formControlName="name"
-            placeholder="name"
-            class="form-control form-control-lg"
-            id="name"
-            type="text"
-            required
-          />
-        </fieldset>
+      <form [formGroup]="newInsuranceForm" (ngSubmit)="onSubmit()">
         <fieldset class="form-group">
           <input
             formControlName="insuranceName"
@@ -44,7 +34,7 @@
           />
         </fieldset>
         <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
-          Register
+          Add new insurance
         </button>
       </form>
     </div>
