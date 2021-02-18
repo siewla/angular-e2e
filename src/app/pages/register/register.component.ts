@@ -35,8 +35,13 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     // console.log(this.registerForm.value);
-    this.customerService
-      .registerNewCustomer(this.registerForm.value)
-      .subscribe(() => this.router.navigate(['/']));
+    if (!this.registerForm.valid) {
+      this.isFormInvalid = true;
+      return;
+    } else {
+      this.customerService
+        .registerNewCustomer(this.registerForm.value)
+        .subscribe(() => this.router.navigate(['/']));
+    }
   }
 }

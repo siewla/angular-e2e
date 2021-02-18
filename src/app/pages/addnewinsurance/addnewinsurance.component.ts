@@ -34,10 +34,13 @@ export class AddnewinsuranceComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.newInsuranceForm.value);
-    console.log(this.customerID);
-    this.customerService
-      .addNewInsurance(this.customerID, this.newInsuranceForm.value)
-      .subscribe(() => this.router.navigate([`/`]));
+    if (!this.newInsuranceForm.valid) {
+      this.isFormInvalid = true;
+      return;
+    } else {
+      this.customerService
+        .addNewInsurance(this.customerID, this.newInsuranceForm.value)
+        .subscribe(() => this.router.navigate([`/`]));
+    }
   }
 }

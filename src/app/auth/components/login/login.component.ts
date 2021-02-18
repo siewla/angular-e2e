@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   private checkCredentials(loginForm: any) {
-    let credentials = this.loginForm.value;
+    let credentials = loginForm.value;
     const signInData = new SignInData(credentials.email, credentials.password);
     if (!this.AuthService.authenticate(signInData)) {
       this.isFormInvalid = false;
