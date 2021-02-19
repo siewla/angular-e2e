@@ -22,13 +22,15 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) {}
 
   async authenticate(signInData: SignInData): Promise<any> {
-    if ((await this.checkCredentials(signInData)) == 'valid') {
+    let response = await this.checkCredentials(signInData);
+    if (response == 'valid') {
       this.isAuthenticated = true;
       this.router.navigate(['']);
       return true;
+    } else {
+      this.isAuthenticated = false;
+      return false;
     }
-    this.isAuthenticated = false;
-    return false;
   }
 
   private async checkCredentials(signInData: SignInData): Promise<any> {
@@ -43,7 +45,7 @@ export class AuthService {
       this.http
         .post<any>(`${this.backEndUrL}/agent/login`, agent, httpOptions)
         .subscribe((data) => {
-          console.log(data);
+          // console.log(data);
           resolve(data);
         })
     );

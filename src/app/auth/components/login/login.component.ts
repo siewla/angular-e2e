@@ -38,10 +38,11 @@ export class LoginComponent implements OnInit {
     this.checkCredentials(this.loginForm);
   }
 
-  private checkCredentials(loginForm: any) {
+  private async checkCredentials(loginForm: any): Promise<any> {
     let credentials = loginForm.value;
     const signInData = new SignInData(credentials.email, credentials.password);
-    if (!this.AuthService.authenticate(signInData)) {
+    let response = await this.AuthService.authenticate(signInData);
+    if (!response) {
       this.isFormInvalid = false;
       this.areCredentialsInvalid = true;
     }
