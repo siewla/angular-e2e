@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <fieldset class="form-group">
+          <input
+            formControlName="email"
+            placeholder="Email"
+            class="form-control form-control-lg"
+            id="email"
+            type="email"
+            required
+            ngModel
+            email
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <input
+            formControlName="password"
+            placeholder="Password"
+            id="password"
+            class="form-control form-control-lg"
+            type="password"
+            required
+          />
+        </fieldset>
+        <button
+          class="btn btn-lg btn-primary pull-xs-right"
+          type="submit"
+          id="Signup"
+        >
+          Signup
+        </button>
+        <div class="mt-5 alert alert-danger" role="alert" *ngIf="isFormInvalid">
+          Not an email or Please fill all fields.
+        </div>
+        <div class="mt-5 alert alert-danger" role="alert" *ngIf="isUserExisted">
+          User Existed
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

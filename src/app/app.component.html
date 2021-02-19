@@ -8,6 +8,11 @@
         >Login</a
       >
     </li>
+    <li class="nav-item" *ngIf="!authService.isAuthenticated">
+      <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+        >Signup</a
+      >
+    </li>
     <li class="nav-item" *ngIf="authService.isAuthenticated">
       <a class="nav-link" routerLink="/register" routerLinkActive="active"
         >Register New Customer</a
