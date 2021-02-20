@@ -14,8 +14,8 @@ const httpOptions = {
 })
 export class AuthService {
   // private readonly mockedUser = new SignInData('admin@mail.com', 'test123');
-  // backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
-  backEndUrL: string = 'http://localhost:3000';
+  backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
+  // backEndUrL: string = 'http://localhost:3000';
 
   isAuthenticated = false;
 
