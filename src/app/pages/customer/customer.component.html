@@ -1,18 +1,19 @@
 <h1>Customer Name: {{ customer.name }}</h1>
-<app-addnewinsurance [customerID]="customer._id"></app-addnewinsurance>
+<app-addnewinsurance
+  [customerID]="customer._id"
+  [agentID]="customer.agentID"
+></app-addnewinsurance>
 <table class="table">
   <thead>
     <tr>
       <th>Insurance Name</th>
-      <th>Agent Name</th>
       <th>Date Activated</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let insurance of customer.insurances">
+    <tr *ngFor="let insurance of customer?.insurances">
       <td>{{ insurance.name }}</td>
-      <td>{{ insurance.agent }}</td>
       <td>{{ insurance.dateActivated | date: "shortDate" }}</td>
       <td>
         <button (click)="onDelete(customer._id, insurance._id)" class="del">

@@ -11,6 +11,7 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './pages/register/register.component';
 import { AddnewinsuranceComponent } from './pages/addnewinsurance/addnewinsurance.component';
+import { AgentComponent } from './pages/agent/agent.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AddnewinsuranceComponent } from './pages/addnewinsurance/addnewinsuranc
     CustomerComponent,
     RegisterComponent,
     AddnewinsuranceComponent,
+    AgentComponent,
   ],
   imports: [
     BrowserModule,

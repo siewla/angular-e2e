@@ -7,7 +7,7 @@ import {
   NgForm,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { SignInData } from '../../../models/signInData';
+import { SignUpData } from '../../../models/signUpData';
 import * as bcrypt from 'bcryptjs';
 import { Router } from '@angular/router';
 
@@ -29,6 +29,8 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       email: '',
       password: '',
+      firstName: '',
+      lastName: '',
     });
   }
 
@@ -45,11 +47,13 @@ export class SignupComponent implements OnInit {
   private async createUser(signupForm: any): Promise<any> {
     let credentials = signupForm.value;
     // console.log(credentials);
-    const signInData = new SignInData(
+    const signUpData = new SignUpData(
       credentials.email,
-      bcrypt.hashSync(credentials.password)
+      bcrypt.hashSync(credentials.password),
+      credentials.firstName,
+      credentials.lastName
     );
-    if ((await this.AuthService.createUser(signInData)) === 'created') {
+    if ((await this.AuthService.createUser(signUpData)) === 'created') {
       this.isFormInvalid = false;
       this.isUserExisted = false;
       this.router.navigate(['']);

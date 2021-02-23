@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -7,13 +7,16 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   styleUrls: ['./customers.component.css'],
 })
 export class CustomersComponent implements OnInit {
-  customers: any;
+  customers: any = [];
+  @Input() agentID: any;
   constructor(private customerService: CustomerService) {}
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe((customers) => {
-      this.customers = customers;
-    });
+    this.customerService
+      .getCustomersByAgentID(this.agentID)
+      .subscribe((customers) => {
+        this.customers = customers;
+      });
   }
 
   onDelete(customerID: any) {

@@ -1,8 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
-    </li>
     <li class="nav-item" *ngIf="!authService.isAuthenticated">
       <a class="nav-link" routerLink="/login" routerLinkActive="active"
         >Login</a
@@ -11,16 +8,6 @@
     <li class="nav-item" *ngIf="!authService.isAuthenticated">
       <a class="nav-link" routerLink="/signup" routerLinkActive="active"
         >Signup</a
-      >
-    </li>
-    <li class="nav-item" *ngIf="authService.isAuthenticated">
-      <a class="nav-link" routerLink="/register" routerLinkActive="active"
-        >Register New Customer</a
-      >
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/reset-password" routerLinkActive="active"
-        >Reset Password</a
       >
     </li>
   </ul>

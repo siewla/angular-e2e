@@ -12,13 +12,17 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CustomerService {
-  backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
-  // backEndUrL: string = 'http://localhost:3000';
+  // backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
+  backEndUrL: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   getCustomers(): Observable<any> {
     return this.http.get<any>(`${this.backEndUrL}/customers/all`);
+  }
+
+  getCustomersByAgentID(agentID: string): Observable<any> {
+    return this.http.get<any>(`${this.backEndUrL}/agent/${agentID}/customers`);
   }
 
   getCustomerByID(customerID: any): Observable<any> {
@@ -35,13 +39,13 @@ export class CustomerService {
     );
   }
 
-  registerNewCustomer(customerData: any) {
+  registerNewCustomer(customerData: any, agentID: any) {
     const customer = {
       name: customerData.name,
+      agentID: agentID,
       insurances: [
         {
           name: customerData.insuranceName,
-          agent: customerData.agentName,
           dateActivated: customerData.dateActivated,
         },
       ],
@@ -56,17 +60,16 @@ export class CustomerService {
     );
   }
 
-  addNewInsurance(customerID: any, insuranceData: any) {
+  addNewInsurance(agentID: any, customerID: any, insuranceData: any) {
     const insurance = {
       name: insuranceData.insuranceName,
-      agent: insuranceData.agentName,
       dateActivated: insuranceData.dateActivated,
     };
 
     // console.log(insurance);
 
     return this.http.put<any>(
-      `${this.backEndUrL}/customer/${customerID}`,
+      `${this.backEndUrL}/agent/${agentID}/customer/${customerID}`,
       insurance,
       httpOptions
     );

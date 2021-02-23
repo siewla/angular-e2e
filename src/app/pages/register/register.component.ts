@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,7 +6,7 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -15,23 +15,29 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  // @Input() agentID: any;
+  agentID: any;
   registerForm: FormGroup;
   isFormInvalid = false;
 
   constructor(
     private fb: FormBuilder,
     private customerService: CustomerService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.registerForm = this.fb.group({
       name: '',
-      agentName: '',
       insuranceName: '',
       dateActivated: '',
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.agentID = params.get('agentID');
+    });
+  }
 
   onSubmit() {
     // console.log(this.registerForm.value);
@@ -40,8 +46,8 @@ export class RegisterComponent implements OnInit {
       return;
     } else {
       this.customerService
-        .registerNewCustomer(this.registerForm.value)
-        .subscribe(() => this.router.navigate(['/']));
+        .registerNewCustomer(this.registerForm.value, this.agentID)
+        .subscribe(() => this.router.navigate([`/agent/${this.agentID}`]));
     }
   }
 }

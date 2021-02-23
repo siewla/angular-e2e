@@ -16,7 +16,9 @@
       </td>
       <td>{{ customer.insurances.length }}</td>
       <td>
-        <div *ngIf="customer.insurances.length > 0; else inactive">Active</div>
+        <div *ngIf="customer?.insurances?.length > 0; else inactive">
+          Active
+        </div>
         <ng-template #inactive> Inactive </ng-template>
       </td>
       <td>

@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignInData } from '../../models/signInData';
+import { SignUpData } from '../../models/signUpData';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,8 +16,8 @@ const httpOptions = {
 })
 export class AuthService {
   // private readonly mockedUser = new SignInData('admin@mail.com', 'test123');
-  backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
-  // backEndUrL: string = 'http://localhost:3000';
+  // backEndUrL: string = 'https://angular-e2e-backend.herokuapp.com';
+  backEndUrL: string = 'http://localhost:3000';
 
   isAuthenticated = false;
 
@@ -23,9 +25,10 @@ export class AuthService {
 
   async authenticate(signInData: SignInData): Promise<any> {
     let response = await this.checkCredentials(signInData);
-    if (response == 'valid') {
+    // console.log(response);
+    if (response.email) {
       this.isAuthenticated = true;
-      this.router.navigate(['']);
+      this.router.navigate([`/agent/${response._id}`]);
       return true;
     } else {
       this.isAuthenticated = false;
@@ -68,10 +71,12 @@ export class AuthService {
   //   return password === this.mockedUser.getPassword();
   // }
 
-  async createUser(signInData: SignInData): Promise<any> {
+  async createUser(signUpData: SignUpData): Promise<any> {
     const agent = {
-      email: signInData.getEmail(),
-      password: signInData.getPassword(),
+      email: signUpData.getEmail(),
+      password: signUpData.getPassword(),
+      firstName: signUpData.getFirstName(),
+      lastName: signUpData.getLastName(),
     };
 
     const response = await new Promise<any>((resolve) =>
@@ -84,6 +89,10 @@ export class AuthService {
     );
 
     return response;
+  }
+
+  getAgentByAgentID(agentID: string) {
+    return this.http.get(`${this.backEndUrL}/agent/${agentID}`);
   }
 
   logout() {

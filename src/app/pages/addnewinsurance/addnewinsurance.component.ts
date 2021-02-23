@@ -16,6 +16,8 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class AddnewinsuranceComponent implements OnInit {
   @Input() customerID: any;
+  @Input() agentID: any;
+
   newInsuranceForm: FormGroup;
   isFormInvalid = false;
 
@@ -25,7 +27,6 @@ export class AddnewinsuranceComponent implements OnInit {
     private router: Router
   ) {
     this.newInsuranceForm = this.fb.group({
-      agentName: '',
       insuranceName: '',
       dateActivated: '',
     });
@@ -39,8 +40,12 @@ export class AddnewinsuranceComponent implements OnInit {
       return;
     } else {
       this.customerService
-        .addNewInsurance(this.customerID, this.newInsuranceForm.value)
-        .subscribe(() => this.router.navigate([`/`]));
+        .addNewInsurance(
+          this.agentID,
+          this.customerID,
+          this.newInsuranceForm.value
+        )
+        .subscribe(() => this.router.navigate([`/agent/${this.agentID}`]));
     }
   }
 }
