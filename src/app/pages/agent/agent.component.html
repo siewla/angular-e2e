@@ -1,9 +1,10 @@
 <h1>Hi {{ agent.firstName }} {{ agent.lastName }}</h1>
 
-<a
+<button
   class="nav-link"
   routerLink="/agent/{{ agent._id }}/register"
   routerLinkActive="active"
-  >Register New Customer</a
 >
+  Register New Customer
+</button>
 <app-customers [agentID]="agentID"></app-customers>
