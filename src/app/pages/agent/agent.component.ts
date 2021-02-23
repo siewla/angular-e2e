@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class AgentComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +25,9 @@ export class AgentComponent implements OnInit {
       this.agent = agent;
       // console.log(this.agent);
     });
+  }
+
+  register() {
+    this.router.navigate([`register/${this.agentID}`]);
   }
 }

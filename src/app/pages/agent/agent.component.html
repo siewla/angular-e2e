@@ -1,12 +1,3 @@
+<button (click)="register()">Register New Customer</button>
 <h1>Hi {{ agent.firstName }} {{ agent.lastName }}</h1>
-
-<button
-  class="nav-link"
-  routerLink="/agent/{{ agent._id }}/register"
-  routerLinkActive="active"
-  type="submit"
-  id="register"
->
-  Register New Customer
-</button>
 <app-customers [agentID]="agentID"></app-customers>
