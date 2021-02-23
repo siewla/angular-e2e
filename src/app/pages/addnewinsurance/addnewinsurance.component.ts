@@ -45,7 +45,10 @@ export class AddnewinsuranceComponent implements OnInit {
           this.customerID,
           this.newInsuranceForm.value
         )
-        .subscribe(() => this.router.navigate([`/agent/${this.agentID}`]));
+        .subscribe((data) => {
+          console.log(data);
+          this.router.navigate([`/agent/${this.agentID}`]);
+        });
     }
   }
 }
