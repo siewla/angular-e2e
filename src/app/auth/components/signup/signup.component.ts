@@ -43,7 +43,9 @@ export class SignupComponent implements OnInit {
       this.isFormInvalid = true;
       return;
     }
-    this.createUser(this.signupForm);
+    if (!this.invalidDomain()) {
+      this.createUser(this.signupForm);
+    }
   }
 
   private async createUser(signupForm: any): Promise<any> {
@@ -66,5 +68,22 @@ export class SignupComponent implements OnInit {
 
   get email() {
     return this.signupForm.get('email');
+  }
+
+  invalidDomain() {
+    let str = this.signupForm.value.email;
+    let emailEle = document.getElementById('email');
+    if (str.match(/test/)) {
+      if (emailEle !== null) {
+        emailEle.classList.add('invalid');
+        emailEle.classList.remove('valid');
+      }
+      return true;
+    }
+    if (emailEle !== null) {
+      emailEle.classList.remove('invalid');
+      emailEle.classList.add('valid');
+    }
+    return false;
   }
 }

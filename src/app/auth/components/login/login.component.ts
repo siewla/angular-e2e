@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
       this.areCredentialsInvalid = false;
       return;
     }
-    this.checkCredentials(this.loginForm);
+    if (!this.invalidDomain()) {
+      this.checkCredentials(this.loginForm);
+    }
   }
 
   private async checkCredentials(loginForm: any): Promise<any> {
@@ -51,8 +53,20 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('email');
   }
 
-  async invalidDomain(str: any) {
-    console.log(await str);
-    return str.match(/test/);
+  invalidDomain() {
+    let str = this.loginForm.value.email;
+    let emailEle = document.getElementById('email');
+    if (str.match(/test/)) {
+      if (emailEle !== null) {
+        emailEle.classList.add('invalid');
+        emailEle.classList.remove('valid');
+      }
+      return true;
+    }
+    if (emailEle !== null) {
+      emailEle.classList.remove('invalid');
+      emailEle.classList.add('valid');
+    }
+    return false;
   }
 }
