@@ -5,14 +5,21 @@
         <fieldset class="form-group">
           <input
             formControlName="email"
-            placeholder="Email"
+            placeholder="Email Address"
             class="form-control form-control-lg"
             id="email"
             type="email"
             required
-            ngModel
-            email
           />
+          <div *ngIf="email !== null && (email.dirty || email.touched)">
+            <div
+              class="mt-2 alert-xs alert-danger"
+              role="alert"
+              *ngIf="email.invalid"
+            >
+              Invalid Email Format
+            </div>
+          </div>
         </fieldset>
         <fieldset class="form-group">
           <input

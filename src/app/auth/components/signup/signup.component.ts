@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+  typicalEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   signupForm: FormGroup;
   isFormInvalid = false;
   isUserExisted = false;
@@ -27,7 +29,7 @@ export class SignupComponent implements OnInit {
     private AuthService: AuthService
   ) {
     this.signupForm = this.fb.group({
-      email: '',
+      email: ['', Validators.pattern(this.typicalEmail)],
       password: '',
       firstName: '',
       lastName: '',
@@ -60,5 +62,9 @@ export class SignupComponent implements OnInit {
     } else {
       this.isUserExisted = true;
     }
+  }
+
+  get email() {
+    return this.signupForm.get('email');
   }
 }

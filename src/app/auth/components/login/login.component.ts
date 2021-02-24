@@ -16,16 +16,15 @@ import { SignInData } from '../../../models/signInData';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  typicalEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   isFormInvalid = false;
   areCredentialsInvalid = false;
+  loginForm = new FormGroup({
+    email: new FormControl(null, Validators.pattern(this.typicalEmail)),
+    password: new FormControl(null),
+  });
 
-  constructor(private fb: FormBuilder, private AuthService: AuthService) {
-    this.loginForm = this.fb.group({
-      email: '',
-      password: '',
-    });
-  }
+  constructor(private AuthService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -46,5 +45,14 @@ export class LoginComponent implements OnInit {
       this.isFormInvalid = false;
       this.areCredentialsInvalid = true;
     }
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  async invalidDomain(str: any) {
+    console.log(await str);
+    return str.match(/test/);
   }
 }
