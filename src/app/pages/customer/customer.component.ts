@@ -22,6 +22,13 @@ export class CustomerComponent implements OnInit {
     });
   }
 
+  isActive(insurance: any) {
+    let currentDate = new Date();
+    let insuranceDate = new Date(insurance.dateActivated);
+    if (insuranceDate < currentDate) return true;
+    else return false;
+  }
+
   onDelete(customerID: any, insuranceID: any) {
     // console.log(customerID, insuranceID);
     this.customerService

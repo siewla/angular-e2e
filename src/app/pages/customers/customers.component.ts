@@ -19,6 +19,15 @@ export class CustomersComponent implements OnInit {
       });
   }
 
+  isPartialActive(insurances: any) {
+    let currentDate = new Date();
+    for (let insurance of insurances) {
+      let insuranceDate = new Date(insurance.dateActivated);
+      if (insuranceDate > currentDate) return true;
+    }
+    return false;
+  }
+
   onDelete(customerID: any) {
     // console.log(customerID, insuranceID);
     this.customerService.deleteCustomer(customerID).subscribe(() =>

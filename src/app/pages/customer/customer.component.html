@@ -14,6 +14,7 @@
     <tr>
       <th>Insurance Name</th>
       <th>Date Activated</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -21,6 +22,10 @@
     <tr *ngFor="let insurance of customer?.insurances">
       <td>{{ insurance.name }}</td>
       <td>{{ insurance.dateActivated | date: "shortDate" }}</td>
+      <td>
+        <span *ngIf="isActive(insurance); else inactive">Active</span>
+        <ng-template #inactive>Inactive</ng-template>
+      </td>
       <td>
         <button (click)="onDelete(customer._id, insurance._id)" class="del">
           x

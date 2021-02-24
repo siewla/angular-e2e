@@ -16,10 +16,32 @@
       </td>
       <td>{{ customer.insurances.length }}</td>
       <td>
-        <div *ngIf="customer?.insurances?.length > 0; else inactive">
-          Active
+        <div *ngIf="customer?.insurances?.length === 0; else active">
+          Zero Insurance
         </div>
-        <ng-template #inactive> Inactive </ng-template>
+        <ng-template #active>
+          <div
+            *ngIf="
+              customer?.insurances?.length === 1 &&
+                isPartialActive(customer.insurances);
+              else partial
+            "
+          >
+            Inactive
+          </div>
+        </ng-template>
+        <ng-template #partial>
+          <div
+            *ngIf="
+              customer?.insurances?.length > 1 &&
+                isPartialActive(customer.insurances);
+              else all
+            "
+          >
+            Partially Active
+          </div>
+        </ng-template>
+        <ng-template #all>Active</ng-template>
       </td>
       <td>
         <button (click)="onDelete(customer._id)" class="del">x</button>
