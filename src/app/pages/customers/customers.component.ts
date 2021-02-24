@@ -23,7 +23,7 @@ export class CustomersComponent implements OnInit {
     let currentDate = new Date();
     for (let insurance of insurances) {
       let insuranceDate = new Date(insurance.dateActivated);
-      if (insuranceDate > currentDate) return true;
+      if (insuranceDate < currentDate) return true;
     }
     return false;
   }

@@ -20,13 +20,7 @@
           Zero Insurance
         </div>
         <ng-template #active>
-          <div
-            *ngIf="
-              customer?.insurances?.length === 1 &&
-                isPartialActive(customer.insurances);
-              else partial
-            "
-          >
+          <div *ngIf="!isPartialActive(customer.insurances); else partial">
             Inactive
           </div>
         </ng-template>
@@ -38,7 +32,7 @@
               else all
             "
           >
-            Partially Active
+            Partial Active
           </div>
         </ng-template>
         <ng-template #all>Active</ng-template>
