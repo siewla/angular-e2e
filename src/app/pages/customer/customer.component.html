@@ -1,10 +1,15 @@
-<a
-  class="nav-link"
+<h2 class="p-3 mb-2 bg-primary text-white text-center">Customer Details</h2>
+<button
+  ype="button"
+  class="ml-2 btn btn-success"
   routerLink="/agent/{{ customer.agentID }}"
   routerLinkActive="active"
-  >Home</a
 >
-<h1>Customer Name: {{ customer.name }}</h1>
+  Back to Dashboard
+</button>
+<h2>
+  Customer Name: <span class="text-success">{{ customer.name }}</span>
+</h2>
 <app-addnewinsurance
   [customerID]="customer._id"
   [agentID]="customer.agentID"
@@ -27,8 +32,12 @@
         <ng-template #inactive>Inactive</ng-template>
       </td>
       <td>
-        <button (click)="onDelete(customer._id, insurance._id)" class="del">
-          x
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="onDelete(customer._id, insurance._id)"
+        >
+          <i class="fa fa-trash"></i>
         </button>
       </td>
     </tr>

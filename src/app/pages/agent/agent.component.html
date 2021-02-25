@@ -1,3 +1,13 @@
-<button (click)="register()">Register New Customer</button>
-<h1>Hi {{ agent.firstName }} {{ agent.lastName }}</h1>
+<h2 class="p-3 mb-2 bg-primary text-white text-center">Agent Dashboard</h2>
+<button
+  type="button"
+  class="mr-2 btn btn-success float-right"
+  (click)="register()"
+>
+  Register New Customer
+</button>
+<h2>
+  Hi
+  <span class="text-success">{{ agent.firstName }} {{ agent.lastName }}</span>
+</h2>
 <app-customers [agentID]="agentID"></app-customers>

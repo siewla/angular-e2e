@@ -1,5 +1,4 @@
-<h1>Customers</h1>
-
+<h2 class="text-info">Your Customers</h2>
 <table class="table">
   <thead>
     <tr>
@@ -38,7 +37,13 @@
         <ng-template #all>Active</ng-template>
       </td>
       <td>
-        <button (click)="onDelete(customer._id)" class="del">x</button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="onDelete(customer._id)"
+        >
+          <i class="fa fa-trash"></i>
+        </button>
       </td>
     </tr>
   </tbody>

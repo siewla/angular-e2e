@@ -1,9 +1,13 @@
+<h2 class="p-3 mb-2 bg-primary text-white text-center">
+  Register New Customer Page
+</h2>
 <button
-  class="nav-link"
+  ype="button"
+  class="ml-2 btn btn-success float-left"
   routerLink="/agent/{{ agentID }}"
   routerLinkActive="active"
 >
-  Home
+  Back to Dashboard
 </button>
 <div class="container mt-5">
   <div class="card">
@@ -12,7 +16,7 @@
         <fieldset class="form-group">
           <input
             formControlName="name"
-            placeholder="name"
+            placeholder="customer name"
             class="form-control form-control-lg"
             id="customer-name"
             type="text"

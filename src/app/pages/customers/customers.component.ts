@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -9,7 +10,10 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 export class CustomersComponent implements OnInit {
   customers: any = [];
   @Input() agentID: any;
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.customerService
@@ -31,9 +35,12 @@ export class CustomersComponent implements OnInit {
   onDelete(customerID: any) {
     // console.log(customerID, insuranceID);
     this.customerService.deleteCustomer(customerID).subscribe(() =>
-      this.customerService.getCustomers().subscribe((customers) => {
-        this.customers = customers;
-      })
+      this.customerService
+        .getCustomersByAgentID(this.agentID)
+        .subscribe((customers) => {
+          this.customers = customers;
+          // console.log(customers);
+        })
     );
   }
 }
