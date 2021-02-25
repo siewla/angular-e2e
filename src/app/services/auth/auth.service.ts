@@ -54,22 +54,7 @@ export class AuthService {
     );
 
     return response;
-
-    // console.log(response);
-    // return response.closed;
-    // return (
-    //   this.checkEmail(signInData.getEmail()) &&
-    //   this.checkPassword(signInData.getPassword())
-    // );
   }
-
-  // private checkEmail(email: string): boolean {
-  //   return email === this.mockedUser.getEmail();
-  // }
-
-  // private checkPassword(password: string): boolean {
-  //   return password === this.mockedUser.getPassword();
-  // }
 
   async createUser(signUpData: SignUpData): Promise<any> {
     const agent = {
@@ -83,7 +68,7 @@ export class AuthService {
       this.http
         .post<any>(`${this.backEndUrL}/agent`, agent, httpOptions)
         .subscribe((data) => {
-          // console.log(data);
+          console.log(data);
           resolve(data);
         })
     );

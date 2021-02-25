@@ -57,7 +57,9 @@ export class SignupComponent implements OnInit {
       credentials.firstName,
       credentials.lastName
     );
-    if ((await this.AuthService.createUser(signUpData)) === 'created') {
+    const response = await this.AuthService.createUser(signUpData);
+    console.log('hi', response);
+    if (response === 'created') {
       this.isFormInvalid = false;
       this.isUserExisted = false;
       this.router.navigate(['']);
